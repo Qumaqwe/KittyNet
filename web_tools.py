@@ -146,5 +146,3 @@ def run_header_analyzer(t):
             
     except requests.exceptions.RequestException as e:
         print(t['ha_conn_error'].format(error=e))
-        
-    input(t['ha_press_enter'])

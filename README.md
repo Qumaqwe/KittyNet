@@ -2,6 +2,8 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
+![Main menu KITTYNET](assets/screen.png)
+
 KITTYNET is a CLI multitool written in Python for basic network and web resource security testing.
 
 > **WARNING:** This tool is created for educational purposes only. Use it only on systems you have explicit permission to test.
