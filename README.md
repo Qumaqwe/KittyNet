@@ -14,6 +14,8 @@ KITTYNET is a CLI multitool written in Python for basic network and web resource
 * **[2] Subdomain Bruteforce** — Dictionary-based subdomain finder.
 * **[3] Directory Bruteforce** — Web path scanner with auto-logging.
 * **[4] Web Header & Security Analyzer** — HTTP security headers analysis.
+* **[5] IP Geolocation** — Target IP/Domain information (Country, City, ISP, ASN).
+* **[6] DNS Reconnaissance** — DNS records enumeration (A, MX, NS, TXT).
 * Dual-language interface support (RU / EN).
 
 ## Installation
