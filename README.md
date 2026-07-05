@@ -21,6 +21,7 @@ KITTYNET is a CLI multitool written in Python for basic network and web resource
 ```bash
 git clone https://github.com/Qumaqwe/kittynet.git
 cd kittynet
+pip install -r requirements.txt
 ```
 
 ## Usage
