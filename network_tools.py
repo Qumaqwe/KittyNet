@@ -1,4 +1,5 @@
 import socket
+import requests
 
 def run_port_scanner(t):
     raw_target = input(t['ask_target']).strip()
@@ -30,3 +31,33 @@ def run_port_scanner(t):
         print("\n[!] Error / Прервано пользователем")
         
     print(t['scan_done'])
+
+def run_ip_geolocation(t):
+    target = input(t.get('ask_ip', '\n[?] Enter IP or Domain / Введите IP или домен: ')).strip()
+    
+    if not target:
+        print(t.get('error', '[-] Error / Ошибка'))
+        return
+
+    print(f"\n[*] Fetching OSINT data for: {target}...")
+    
+    try:
+        response = requests.get(f"http://ip-api.com/json/{target}?lang=en")
+        data = response.json()
+
+        if data.get("status") == "success":
+            print("\n" + "="*40)
+            print(f"[+] Target IP   : {data.get('query')}")
+            print(f"[+] Country     : {data.get('country')} ({data.get('countryCode')})")
+            print(f"[+] City/Region : {data.get('city')}, {data.get('regionName')}")
+            print(f"[+] ISP         : {data.get('isp')}")
+            print(f"[+] Organization: {data.get('org')}")
+            print(f"[+] ASN         : {data.get('as')}")
+            print(f"[+] Coordinates : {data.get('lat')}, {data.get('lon')}")
+            print("="*40)
+        else:
+            error_msg = data.get("message", "Unknown error")
+            print(f"\n[-] API Error: {error_msg}")
+
+    except requests.exceptions.RequestException as e:
+        print(f"\n[-] Connection Error: {e}")

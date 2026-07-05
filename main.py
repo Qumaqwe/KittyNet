@@ -17,6 +17,7 @@ LOCALIZATION = {
         'error': "\n[!] Ошибка: Неверный пункт меню!",
         'ask_domain': "[?] Введите целевой домен (например, example.com): ",
         'ask_url': "[?] Введите полный URL цели (например, https://example.com): ",
+        'ask_ip': "\n[?] Введите IP или домен цели: ",
 
         'ask_target': "[?] Введите целевой IP или домен для сканирования: ",
         'scan_start': "\n[*] Сканирование цели: ",
@@ -33,8 +34,9 @@ LOCALIZATION = {
         'menu_2': "\033[96m[2]\033[0m Subdomain Bruteforce",
         'menu_3': "\033[96m[3]\033[0m Directory Bruteforce [Auto-logger]",
         'menu_4': "\033[96m[4]\033[0m Web Header & Security Analyzer",
-        'menu_5': "\033[96m[5]\033[0m Exit",
-        
+        'menu_5': "\033[96m[5]\033[0m IP Geolocation",
+        'menu_6': "\033[96m[6]\033[0m Exit",
+
         'menu_footer': "\033[95m================================================================================\033[0m",
 
         'sub_start': "\n[*] Начинаем поиск поддоменов...\n",
@@ -77,6 +79,7 @@ LOCALIZATION = {
         'error': "\n[!] Error: Invalid option!",
         'ask_domain': "[?] Enter target domain (e.g., example.com): ",
         'ask_url': "[?] Enter target full URL (e.g., https://example.com): ",
+        'ask_ip': '\n[?] Enter target IP or Domain: ',
 
         'ask_target': "[?] Enter target IP or domain for scanning: ",
         'scan_start': "\n[*] Scanning target: ",
@@ -93,7 +96,8 @@ LOCALIZATION = {
         'menu_2': "\033[96m[2]\033[0m Subdomain Bruteforce",
         'menu_3': "\033[96m[3]\033[0m Directory Bruteforce [Auto-logger]",
         'menu_4': "\033[96m[4]\033[0m Web Header & Security Analyzer",
-        'menu_5': "\033[96m[5]\033[0m Exit",
+        'menu_5': "\033[96m[5]\033[0m IP Geolocation",
+        'menu_6': "\033[96m[6]\033[0m Exit",
         
         'menu_footer': "\033[95m================================================================================\033[0m",
 
@@ -149,6 +153,7 @@ def main():
         print(t['menu_3'])
         print(t['menu_4'])
         print(t['menu_5'])
+        print(t['menu_6'])
         print(t['menu_footer'])
 
         choice = input(t['ask_choice'])
@@ -167,6 +172,9 @@ def main():
             web_tools.run_header_analyzer(t)
             input(t['return_to_menu'])
         elif choice == "5":
+            network_tools.run_ip_geolocation(t)
+            input(t['return_to_menu'])
+        elif choice == "6":
             print(t['goodbye'])
             break
         else:
