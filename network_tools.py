@@ -61,3 +61,37 @@ def run_ip_geolocation(t):
 
     except requests.exceptions.RequestException as e:
         print(f"\n[-] Connection Error: {e}")
+
+def run_dns_recon(t):
+    domain = input(t.get('ask_domain', '\n[?] Enter domain / Введите домен: ')).strip()
+    
+    if not domain:
+        print(t.get('error', '[-] Error / Ошибка'))
+        return
+
+    # Поддерживаемые типы записей: A, MX, NS, TXT
+    record_types = ['A', 'MX', 'NS', 'TXT']
+    print(f"\n[*] Performing DNS Reconnaissance for: {domain}...")
+    print("=" * 50)
+
+    for record in record_types:
+        try:
+            # Делаем запрос к Google DNS JSON API
+            url = f"https://dns.google/resolve?name={domain}&type={record}"
+            response = requests.get(url)
+            data = response.json()
+
+            print(f"\n[+] Type: {record}")
+            
+            # Проверяем, есть ли ответы (поле 'Answer')
+            if 'Answer' in data:
+                for answer in data['Answer']:
+                    # answer['data'] содержит сам результат записи
+                    print(f"    -> {answer['data']}")
+            else:
+                print(f"    [-] No {record} records found.")
+
+        except requests.exceptions.RequestException as e:
+            print(f"    [-] Connection error for {record} record: {e}")
+            
+    print("\n" + "=" * 50)
